@@ -27,3 +27,25 @@ Invoke-Command -Session $s -ScriptBlock {
      folder,name,
      username,password,
      folder,name,username,password))
+
+
+def enableScheduledTask(hostname,folder,name):
+    runPowershell('''\
+$ErrorActionPreference="Stop"
+$s=New-PSSession -ComputerName %s
+
+Invoke-Command -Session $s -ScriptBlock {
+    Enable-ScheduledTask -ErrorAction Ignore -TaskPath "%s" -TaskName "%s"
+}
+'''%(hostname,folder,name))
+
+
+def disableScheduledTask(hostname,folder,name):
+    runPowershell('''\
+$ErrorActionPreference="Stop"
+$s=New-PSSession -ComputerName %s
+
+Invoke-Command -Session $s -ScriptBlock {
+    Disable-ScheduledTask -ErrorAction Ignore -TaskPath "%s" -TaskName "%s"
+}
+'''%(hostname,folder,name))
