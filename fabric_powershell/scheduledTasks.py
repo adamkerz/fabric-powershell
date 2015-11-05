@@ -49,3 +49,14 @@ Invoke-Command -Session $s -ScriptBlock {
     Disable-ScheduledTask -ErrorAction Ignore -TaskPath "%s" -TaskName "%s"
 }
 '''%(hostname,folder,name))
+
+
+def startScheduledTask(hostname,folder,name):
+    runPowershell('''\
+$ErrorActionPreference="Stop"
+$s=New-PSSession -ComputerName %s
+
+Invoke-Command -Session $s -ScriptBlock {
+    Start-ScheduledTask -TaskPath "%s" -TaskName "%s"
+}
+'''%(hostname,folder,name))
