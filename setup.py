@@ -18,7 +18,7 @@ setup(
     description='Fabric functions to run Powershell scripts and manipulate remote Windows servers.',
     license='BSD 3-Clause',
     keywords='fabric powershell',
-    url='http://github.com/adamkerz/django-presentation',
+    url='http://github.com/adamkerz/fabric-powershell',
     classifiers=(
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
