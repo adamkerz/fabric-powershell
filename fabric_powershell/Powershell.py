@@ -1,4 +1,5 @@
 import base64
+import shutil
 
 from fabric.api import *
 from fabric.utils import puts
@@ -33,6 +34,12 @@ Invoke-Command -Session $s -ScriptBlock {
         puts('Executing powershell code:\n'+cmd)
         s=base64.b64encode(cmd.encode('utf-16le'))
         local('powershell -EncodedCommand {}'.format(s))
+
+
+    @classmethod
+    def put(cls,srcPath,destPath):
+        """Convenience method to upload files - TODO: (if possible) currently not tied to the hostname parameter."""
+        shutil.copy(srcPath,destPath)
 
 
     # make this a context manager
